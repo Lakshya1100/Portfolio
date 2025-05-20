@@ -1,3 +1,21 @@
+// Function to set the theme
+function setTheme(theme) {
+  document.documentElement.setAttribute('data-theme', theme);
+  localStorage.setItem('theme', theme);
+ }
+ // Load stored theme on page load
+ document.addEventListener('DOMContentLoaded', () => {
+  const savedTheme = localStorage.getItem('theme') || 'light';
+  setTheme(savedTheme);
+  // Toggle theme on button click
+  const toggleButton = document.getElementById('themeToggle');
+  toggleButton.addEventListener('click', () => {
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    setTheme(newTheme);
+  });
+ });
+
 // Blur BG & transition
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
@@ -122,7 +140,7 @@ section.classList.add('visible');
 
 
       /* Project */
-      
+
 // Scroll buttons functionality
 const projectsContainer = document.querySelector('.projects-container');
 const scrollLeftBtn = document.querySelector('.scroll-btn.left');
